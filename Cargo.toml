@@ -1,0 +1,15 @@
+[package]
+name = "covidtr"
+version = "0.1.0"
+edition = "2018"
+authors = ["Dogu Us <usdogu@gmail.com>"]
+description = "Verileri covid19.saglik.gov.tr'den Çeken Küçük Bir Crate"
+repository = "https://github.com/usdogu/covidtr"
+documentation = "https://docs.rs/covidtr"
+
+[dependencies]
+reqwest = { version = "0.11.0", features = ["json"] }
+serde = "1.0.119"
+serde_json = "1.0.61"
+serde_derive = "1.0.119"
+tokio = { version = "1.0.2", features = ["full"] }
