@@ -1,8 +1,8 @@
-use serde_derive::{Serialize, Deserialize};
+use serde_derive::{Deserialize};
 
 pub type ReturnedJson = Vec<ActualJson>;
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Deserialize)]
 pub struct ActualJson {
     pub tarih: String,
     pub gunluk_test: String,
