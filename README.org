@@ -1,0 +1,16 @@
+#+TITLE: Readme
+#+AUTHOR: Doğu Us
+
+* covidtr
+ Verileri covid19.saglik.gov.tr'den Çeken Küçük Bir Crate
+* Örnek
+ #+begin_src rust
+use covidtr::*;
+#[tokio::main]
+async fn main() {
+  let resp = covid().await.unwrap();
+  println!("{}", resp.tarih);
+}
+ #+end_src
+* Kullanabileceğiniz Tüm Veriler
+https://docs.rs/covidtr/2.0.0/covidtr/struct.Response.html

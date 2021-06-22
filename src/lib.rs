@@ -1,9 +1,7 @@
-use serde_derive::{Deserialize};
-
-pub type ReturnedJson = Vec<ActualJson>;
+use serde_derive::Deserialize;
 
 #[derive(Deserialize)]
-pub struct ActualJson {
+pub struct Response {
     pub tarih: String,
     pub gunluk_test: String,
     pub gunluk_vaka: String,
@@ -26,12 +24,15 @@ pub struct ActualJson {
     pub filyasyon_orani: String,
 }
 
+pub async fn covid() -> Result<Response, Box<dyn std::error::Error>> {
+    let resp = reqwest::get("https://covid19.saglik.gov.tr")
+        .await?
+        .text()
+        .await?;
 
-pub async fn covid() -> Result<ReturnedJson, Box<dyn std::error::Error>> {
-    let resp = reqwest::get("https://covid19.saglik.gov.tr").await?.text().await?;
-    let baslangic =  resp.find(r"var sondurumjson = ").unwrap();
-    let bitis = resp.find(";//]]>").unwrap();
-    let jsonstr = &resp[baslangic..bitis][19..];
-    let json: ReturnedJson = serde_json::from_str(jsonstr)?;
+    let baslangic = resp.find(r"var sondurumjson = [").unwrap();
+    let bitis = resp.find("];//]]>").unwrap();
+    let jsonstr = &resp[baslangic..bitis][20..];
+    let json: Response = serde_json::from_str(jsonstr)?;
     Ok(json)
 }
