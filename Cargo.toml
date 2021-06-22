@@ -6,6 +6,7 @@ authors = ["Dogu Us <usdogu@gmail.com>"]
 description = "Verileri covid19.saglik.gov.tr'den Çeken Küçük Bir Crate"
 repository = "https://github.com/usdogu/covidtr"
 documentation = "https://docs.rs/covidtr"
+readme = "README.org"
 license = "MIT"
 [dependencies]
 reqwest = { version = "0.11.0", features = ["json"] }
